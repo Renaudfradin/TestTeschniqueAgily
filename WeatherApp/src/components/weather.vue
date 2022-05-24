@@ -45,7 +45,7 @@ export default defineComponent ({
 <div class="curentNextDay">
     <div class="curent">
         <div class="top">
-            <img :src="icon_current" alt="" srcset="">
+            <img :src="`https://openweathermap.org/img/wn/${iconCurrent}.png`" alt="" srcset="">
             <p>{{city}}</p>
             <p>{{weatherCurrent}} °C</p>
         </div>

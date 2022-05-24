@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 const axios = require("axios");
 const NodeCache = require("node-cache");
-const cache = new NodeCache({ stdTTL: 10});
+/**stdTTL:5 = 5sec*/
+const cache = new NodeCache({ stdTTL: 5});
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -14,12 +15,12 @@ app.use((req, res, next) => {
 app.get('/',(req, res, next)=>{
     return res.status(200).json({
         statusCode: 200,
-        message:"api testTechnique"
+        message:"api test Technique agily http://localhost:3005/meteo/nomdelavillerecherche"
     })
 })
 
 app.get('/meteo/:city', async (req, res, next)=>{
-    let key_api = '3bb44ad73a13161159832d921352f64f';
+    let key_api = 'db988691faf182dfc3750cd1e57f3718';
     let url_geo = 'http://api.openweathermap.org/geo/1.0/direct?';
     let url_weather = 'http://api.openweathermap.org/data/2.5/onecall?';
     let lon = null;
@@ -60,7 +61,7 @@ app.get('/meteo/:city', async (req, res, next)=>{
                 icon_current = response.data.current.weather[0].icon;
                 next_DayResult = response.data.daily;
             })
-
+            
             for (let i = 0; i < next_DayResult.length; i++) {
                 let next_DayWeather = next_DayResult[i].temp.day;
                 let next_Dayicon = next_DayResult[i].weather[0].icon;
@@ -68,13 +69,13 @@ app.get('/meteo/:city', async (req, res, next)=>{
             }
 
             curent_Day = {
-                "weatherCurrent": + weatherCurrent,
+                "iconCurrent": ''+ icon_current ,
                 "humidityCurrent": + humidity_current,
                 "pressureCurrent": + pression_current,
                 "windCurrent": + vent_current,
                 "weatherDay_current": + weatherDay_current,
                 "weatherNight_current": + weatherNight_current,
-                "iconCurrent": + icon_current
+                "weatherCurrent": + weatherCurrent
             };
            
             /*set cache*/
