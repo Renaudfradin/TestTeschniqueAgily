@@ -1,0 +1,16 @@
+{
+  "name": "api-testtechnique",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "express": "^4.18.1",
+    "node-cache": "^5.1.2"
+  }
+}
